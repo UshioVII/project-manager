@@ -1,0 +1,27 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+html{
+  background-image: url("bg-image.jpg");
+  background-repeat: no-repeat;
+}
+
+h1{
+  font-weight: normal !important;
+  text-shadow: 5px 6px 6px rgba(0, 0, 0, 0.717);
+}
+
+h2{
+  font-weight: bold !important;
+}
+
+.shadow-lg{
+  box-shadow: 1px 5px 8px 7px rgba(0, 0, 0, 0.087) !important;
+  -webkit-box-shadow: 1px 5px 8px 7px rgba(0, 0, 0, 0.153) !important;
+  -moz-box-shadow: 1px 5px 8px 7px rgba(0, 0, 0, 0.37) !important;
+}
+
+.drop-shadow-lg{
+  text-shadow: 5px 6px 6px rgba(0, 0, 0, 0.717);
+}
