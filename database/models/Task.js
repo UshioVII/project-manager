@@ -3,17 +3,17 @@ const mongoose = require('mongoose');
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    requiered: true,
-    trim: true
+    required: true,
+    trim: true,
   },
   description: {
     type: String,
-    requiered: true,
+    required: true,
     trim: true,
   },
   dataExpire: {
     type: Date,
-    default: Data.now(),
+    default: Date.now(),
   },
   state: {
     type: Boolean,
@@ -29,12 +29,13 @@ const taskSchema = new mongoose.Schema({
     default: 'Baja'
   },
   project: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Project',
-    }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project',
+  },
+
 }, {
   timestamps: true
 });
 
 
-module.exports = mongoose.model('Task', taskSchema)
+module.exports = mongoose.model('Task', taskSchema);

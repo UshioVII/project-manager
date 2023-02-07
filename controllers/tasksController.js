@@ -1,89 +1,89 @@
 module.exports = {
-    list : async (req,res) => {
+    list: async (req, res) => {
         try {
             return res.status(200).json({
-                ok : true,
-                msg :'Lista de Tareas'
+                ok: true,
+                msg: 'Lista de Tareas'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en TASKS-LIST'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en TASKS-LIST'
             })
         }
     },
-    store : async (req,res) => {
+    store: async (req, res) => {
         try {
             return res.status(201).json({
-                ok : true,
-                msg :'Tarea guardado'
+                ok: true,
+                msg: 'Tarea guardado'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en STORE-TASK'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en STORE-TASK'
             })
         }
-       
+
     },
-    detail : async (req,res) => {
+    detail: async (req, res) => {
         try {
             return res.status(200).json({
-                ok : true,
-                msg :'Detalle de la Tarea'
+                ok: true,
+                msg: 'Detalle de la Tarea'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en TASK-DETAIL'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en TASK-DETAIL'
             })
         }
-       
+
     },
-    update : async (req,res) => {
+    update: async (req, res) => {
         try {
             return res.status(201).json({
-                ok : true,
-                msg :'Tarea actualizada'
+                ok: true,
+                msg: 'Tarea actualizada'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en TASK-UPDATE'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en TASK-UPDATE'
             })
         }
     },
-    remove : async (req,res) => {
+    remove: async (req, res) => {
         try {
             return res.status(200).json({
-                ok : true,
-                msg :'Tarea eliminado'
+                ok: true,
+                msg: 'Tarea eliminado'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en TASK-REMOVE'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en TASK-REMOVE'
             })
         }
     },
-    changeState : async (req,res) => {
+    changeState: async (req, res) => {
         try {
             return res.status(200).json({
-                ok : true,
-                msg :'Tarea completada'
+                ok: true,
+                msg: 'Tarea completada'
             })
         } catch (error) {
             console.log(error);
             return res.status(error.status || 500).json({
-                ok : false,
-                msg : error.message || 'Upss, hubo un error en CHANGE-STATE'
+                ok: false,
+                msg: error.message || 'Upss, hubo un error en CHANGE-STATE'
             })
         }
     },
- 
+
 }

@@ -6,9 +6,9 @@ import { useForm } from "../hooks/useForm";
 import Swal from "sweetalert2";
 import '../Style.css';
 
-export const Register = () => {
+const exRegEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}/;
 
-  const exRegEmail = /^[^@]+@[^@]+\.[a-zA-Z]{2,}/;
+export const Register = () => {
 
   const [alert, setAlert] = useState({});
 
@@ -94,7 +94,7 @@ export const Register = () => {
         <h2 className='text-gray-500 font-black text-center'>Creación de cuenta</h2>
         <p className="my-3">Al crear una cuenta en Board Flow, se entiende que el usuario ha leído y aceptado los <a href="/register" className=" text-indigo-900">términos y condiciones</a> de la página. Además, se recibirá un correo electrónico de verificación para confirmar la cuenta. Por favor, verifique su correo electrónico para utilizar los servicios de Board Flow.</p>
         <div className="my-5">
-          <label htmlFor="name" className="text-gray-500 block font-bold">Nombre</label>
+          <label htmlFor="name" className="text-gray-500 block">Nombre</label>
           <input
             id="name"
             type="text"
@@ -107,7 +107,7 @@ export const Register = () => {
           />
         </div>
         <div className="my-5">
-          <label htmlFor="email" className="text-gray-500 block font-bold">Correo electrónico</label>
+          <label htmlFor="email" className="text-gray-500 block ">Correo electrónico</label>
           <input
             id="email"
             type="email"
@@ -119,7 +119,7 @@ export const Register = () => {
           />
         </div>
         <div className="my-5">
-          <label htmlFor="password" className="text-gray-500 block font-bold">Contraseña</label>
+          <label htmlFor="password" className="text-gray-500 block">Contraseña</label>
           <input
             id="password"
             type="password"
@@ -131,7 +131,7 @@ export const Register = () => {
           />
         </div>
         <div className="my-5">
-          <label htmlFor="password2" className="text-gray-500 block font-bold">Confirma tu contraseña</label>
+          <label htmlFor="password2" className="text-gray-500 block ">Confirma tu contraseña</label>
           <input
             id="password2"
             type="password"
@@ -150,18 +150,18 @@ export const Register = () => {
           Crear cuenta
         </button>
       </form>
-      <nav className='md:flex md:justify-between'>
+      <nav className='md:flex md:justify-around text-center'>
         <Link
           to={'/'}
-          className=" text-white block text-center my-3 text-sm drop-shadow-lg"
+          className=" text-white block text-center my-3 text-sm drop-shadow-lg transition-colors mb-4"
         >
-          ¿Estás registrado? Iniciá sesión
+          Iniciar sesión
         </Link>
         <Link
           to={'/forget-password'}
-          className=" text-white block text-center my-3 text-sm drop-shadow-lg "
+          className=" text-white block text-center my-3 text-sm drop-shadow-lg transition-colors "
         >
-          ¿No puede iniciar sesión?
+          ¿Olvidaste la contraseña?
         </Link>
 
       </nav>

@@ -7,15 +7,15 @@ const { list, store, detail, update, remove, addCollaborator, removeCollaborator
 
 router
     .route('/')
-        .get(list)
-        .post(store)
+    .get(list)
+    .post(store)
 router
     .route('/:id')
-        .get(detail)
-        .put(update)
-        .delete(remove)
+    .get(detail)
+    .put(update)
+    .delete(remove)
 router
     .get('/collaborator/add', addCollaborator)
-    .delete('/collaborator/remove',removeCollaborator)
+    .delete('/collaborator/remove', removeCollaborator)
 
 module.exports = router;

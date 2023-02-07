@@ -1,6 +1,6 @@
 const createError = require('http-errors');
 const User = require('../database/models/User');
-const errorResponse = require('../helpers/errorRespones');
+const errorResponse = require('../helpers/errorResponse');
 const generateJWT = require('../helpers/generateJWT');
 const generateTokenRandom = require('../helpers/generateTokenRandom');
 const { confirmRegister, forgotPassword } = require('../helpers/sendMails');
@@ -21,27 +21,25 @@ module.exports = {
 
             if (user) {
                 throw createError(400, "El email ya se encuentra registrado");
-            }
+            };
 
-            const token = generateTokenRandom()
+            const token = generateTokenRandom();
 
             user = new User(req.body);
             user.token = token;
 
             const userStore = await user.save();
 
-            //TODO: enviar el email de confirmación con el TOKEN
-
-            confirmRegister({
-                name: userStore.name, 
-                email: userStore.email, 
+            await confirmRegister({
+                name: userStore.name,
+                email: userStore.email,
                 token: userStore.token
             })
 
             return res.status(201).json({
                 ok: true,
-                msg: 'Se ha enviado un email a su correo con las instrucciones para completar su registro...',
-                data: userStore
+                msg: 'Se ha enviado un email con las intrucciones para completar su registro.',
+                user: userStore
             })
 
         } catch (error) {
@@ -64,7 +62,7 @@ module.exports = {
             });
 
             if (!user) {
-                throw createError(403, "Credenciales inválidas | EMAIL");
+                throw createError(403, "Credenciales inválidas");
             };
 
             if (!user.checked) {
@@ -72,20 +70,21 @@ module.exports = {
             };
 
             if (!await user.checkedPassword(password)) {
-                throw createError(403, "Credenciales inválidas | PASSWORD");
+                throw createError(403, "Credenciales inválidas");
             }
 
             return res.status(200).json({
                 ok: true,
                 msg: 'Usuario Logueado',
                 user: {
-                    nombre: user.name,
-                    email: user.email,
-                    token: generateJWT({
-                        id: user._id
-                    })
-                }
-            })
+                    name: user.name,
+                    _id: user._id,
+                },
+                token: generateJWT({
+                    id: user._id
+                })
+            });
+
         } catch (error) {
             return errorResponse(res, error, "LOGIN")
         }
@@ -107,10 +106,8 @@ module.exports = {
                 throw createError(400, "Token inválido");
             };
 
-            const token = generateTokenRandom()
-
             user.checked = true;
-            user.token = token;
+            user.token = null;
 
             await user.save()
 
@@ -140,13 +137,11 @@ module.exports = {
             user.token = token;
             await user.save();
 
-            //TODO: Enviar email para reestablecer la contraseña
-        
             await forgotPassword({
                 name: user.name,
                 email: user.email,
                 token: user.token
-            })
+            });
 
             return res.status(200).json({
                 ok: true,
@@ -158,14 +153,14 @@ module.exports = {
     },
     verifyToken: async (req, res) => {
         try {
-            
-            const {token} = req.query;
+
+            const { token } = req.query;
 
             if (!token) throw createError(400, "No hay token en la petición");
 
-            const user = await User.findOne ({
+            const user = await User.findOne({
                 token
-            })
+            });
 
             if (!user) throw createError(400, "Token inválido");
 
@@ -173,21 +168,23 @@ module.exports = {
                 ok: true,
                 msg: 'Token verificado'
             })
-
         } catch (error) {
-            return errorResponse(res, error, "VERYFY-TOKEN")
+            return errorResponse(res, error, "VERIFY-TOKEN")
         }
     },
     changePassword: async (req, res) => {
         try {
-            const {token} = req.query;
-            const {password} = req.body;
+
+            const { token } = req.query;
+            const { password } = req.body;
 
             if (!password) throw createError(400, "El password es obligatorio");
 
             const user = await User.findOne({
                 token
-            })
+            });
+
+            if (!user) throw createError(400, "El token es inválido");
 
             user.password = password;
             user.token = "";
@@ -196,10 +193,11 @@ module.exports = {
 
             return res.status(200).json({
                 ok: true,
-                msg: 'Password actualizado'
+                msg: 'Contraseña actualizada con éxito.'
             })
         } catch (error) {
             return errorResponse(res, error, "CHANGE-PASSWORD")
+
         }
     },
 }
