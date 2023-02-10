@@ -10,7 +10,7 @@ export const Project = () => {
   const { id } = useParams();
   const { loading, alert, getProject, project } = useProjects();
 
-  const { name, description, dateExpire, client } = project;
+  const { name, description, dateExpire, client, _id } = project;
 
   useEffect(() => {
     getProject(id);
@@ -24,63 +24,67 @@ export const Project = () => {
         <p>Cargando...</p>
       ) : (
         <>
-          <div className="flex justify-between">
-            <h1 className="text-4xl uppercase font-bold">{name}</h1>
-            <Link
-              to={`/projects/edit-project/1`}
-              className="flex justify-center items-center gap-2 text-gray-500 hover:text-black uppercase font-bold"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                />
-              </svg>
-              <p>Editar</p>
-            </Link>
+          <div>
+            <h1 className="text-4xl text-white font-bold">{name}</h1>
           </div>
-          <h2 className="text-2xl uppercase font-bold text-gray-600">{client}</h2>
-          <hr className="border-b border-gray-600" />
-          <p>{description}</p>
+            <h2 className="tex drop-shadow-lg text-white">{client}</h2>
+          <hr className="border-b border-gray-800" />
+          <div className="flex justify-between ">
+            <p className="text-white drop-shadow-lg my-1">{description}</p>
+            <p className="text-white drop-shadow-lg my-1">Fecha de entrega: {dateExpire && dateExpire.split('T')[0]}</p>
+          </div>
           <div className="flex justify-between">
-            <p className="font-bold text-3xl mt-10 mb-5">Tareas del proyecto</p>
-            <div
-              className="flex justify-center items-center gap-1 text-gray-500 hover:text-black cursor-pointer"
-            /*  onClick={handleModalForm} */
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 4.5v15m7.5-7.5h-15"
-                />
-              </svg>
-              <p>Nueva Tarea</p>
+              <p className="text-white text-3xl mt-10 mb-5 drop-shadow-lg">Tareas del proyecto</p>
+              <div className="flex">
+                <Link
+                  to={`/projects/edit-project/${_id}`}
+                  className="flex justify-center items-center gap-2 text-white hover:text-black drop-shadow-lg m-3"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                    />
+                  </svg>
+                  <p>Editar projecto</p>
+                </Link>
+                <div className="flex justify-center items-center gap-1 text-white hover:text-black drop-shadow-lg cursor-pointer">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                  <p>Nueva Tarea</p>
+                </div>
             </div>
+            
+
           </div>
           {[1, 2].map((task) => (
-            <Task />
+            <Task key={ task } />
           ))}
           <div className="flex items-center justify-between">
-            <p className="font-bold text-3xl mt-10 mb-5">Colaboradores</p>
+              <p className="text-3xl mt-10 mb-5 text-white drop-shadow-lg">Colaboradores</p>
 
             <button
-              className="flex justify-center items-center gap-1 text-gray-500 hover:text-black cursor-pointer"
+              className="flex justify-center items-center gap-1 text-white hover:text-black cursor-pointer"
             /* onClick={handleModalAddCollaborator} */
             >
               <svg
@@ -102,7 +106,7 @@ export const Project = () => {
             </button>
           </div>
           {[1, 2].map((collaborator) => (
-            <Collaborator />
+            <Collaborator key={collaborator} />
           ))}
         </>
       )}

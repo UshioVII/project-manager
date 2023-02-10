@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 
 export const Sidebar = () => {
   return (
-    <aside className='md:w-80 px-5 py-10'>
+    <aside className='md:w-80 px-5 py-10 '>
         <p
-        className='text-xl font-bold'
+        className='text-xl text-white font-bold'
         >
-            Hola:{/*  {auth.name} */}
+            Bienvenido:{/*  auth.name} */}
         </p>
         <Link
             to="create-project"
-            className='bg-sky-600 w-full p-3 text-white uppercase font-bold rounded-md block mt-5 text-center'
+        className=' bg-slate-500 w-full p-3 text-white font-bold rounded-md hover:bg-sky-600  block mt-5 text-center'
         >
             Nuevo proyecto
         </Link>

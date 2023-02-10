@@ -16,7 +16,7 @@ export const ProtectedLayout = () => {
       {auth._id ? (
         <div className="bg-gray-200">
           <Header />
-          <div className="md:flex md:min-h-screen">
+          <div className="md:flex md:min-h-screen div-bg">
             <Sidebar />
             <main className="flex-1 p-10">
               <Outlet />

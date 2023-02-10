@@ -13,7 +13,7 @@ export const Projects = () => {
   return (
     <>
       <h1
-        className='text-4xl font-black'
+        className='text-4xl text-white text-center'
       >
         Proyectos
       </h1>
@@ -21,15 +21,7 @@ export const Projects = () => {
         className='bg-white p-5 shadow mt-10 rounded-md'
       >
         {
-          loading
-            ?
-            <p>Cargando...</p>
-            :
-            projects.length
-              ?
-              projects.map(project => <ProjectPreview key={project._id} {...project} />)
-              :
-              <p>No hay proyectos agregados</p>
+          loading ? <p>Cargando...</p> : projects.length ? projects.map(project => <ProjectPreview key={project._id} {...project} />) : <p>No hay proyectos agregados</p>
         }
       </div>
     </>

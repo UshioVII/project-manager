@@ -5,7 +5,7 @@ export const ProjectAdd = () => {
   return (
     <>
       <h1
-        className='text-4xl font-black'
+        className='text-4xl text-white text-center'
       >
         Crear proyecto
       </h1>

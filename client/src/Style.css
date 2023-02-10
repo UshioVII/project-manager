@@ -2,9 +2,14 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+body{
+  padding-right: 0 !important;
+}
+
 html{
   background-image: url("bg-image.jpg");
   background-repeat: no-repeat;
+  width: auto;
 }
 
 h1{
@@ -24,4 +29,25 @@ h2{
 
 .drop-shadow-lg{
   text-shadow: 5px 6px 6px rgba(0, 0, 0, 0.717);
+}
+
+.div-bg{
+  background-image: url("bg-image.jpg");
+  background-repeat: no-repeat;
+}
+
+
+.hr{
+  background-color: rgb(17, 17, 17);
+  border-bottom: 1px solid rgb(103, 103, 103);
+}
+.hr-i{
+  background-color: rgb(59, 59, 59);
+  color: rgb(255, 255, 255);
+}
+
+.cheked-confirm{
+    stroke: rgb(30, 255, 0);
+    fill: url(#gradient-1);
+    fill-opacity: 0;
 }
